@@ -90,17 +90,16 @@ li {
     background-image: url(../images/shareFb.png);
     width: 100px;
 }
-.detail{
+/* .detail{
     color: #bebebe;
     font-size: 13px;
     background-color: #181818;
     padding: 10px;
-    /* margin-top:10px; */
-}
-.tab{
+} */
+/* .tab{
     height: 34px;
     width: 100px;
-}
+} */
 .blocktitle .icon {
     margin-top: 10px;
     margin-right: 3px;

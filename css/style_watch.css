@@ -43,7 +43,7 @@ a{
 }
 
 #content{
-    background-color: #181818;    
+    background-color: #181818;
 }
 #detail, #server-list, #comment, #not-seen{
     background-color: #232323;
@@ -92,7 +92,26 @@ a{
     color: navajowhite;
 }
 
+nav#breadcrumb {
+  width: 80%;
+}
 
+ol.breadcrumb {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #e9ecef;
+    border-radius: .25rem;
+}
+
+ol li.breadcrumb-item {
+  margin-left: 2%;
+  margin-right: 2%;
+}
 
 
 /* share */
@@ -139,8 +158,38 @@ legend{
 
 /* server-list */
 #server-list{
-    width: 100%;
-    padding: 10px;
+  padding: 10px;
+  margin-bottom: -5px;
+}
+
+#server-list .row {
+  margin: 1%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.col-sm-3 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.col-sm-9 {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
 }
 
 .seat{
@@ -164,7 +213,7 @@ legend{
 
 /* comment */
 .input_cmt{
-    width: 100%; 
+    width: 100%;
     border: none;
     min-height: 60px;
 
@@ -176,7 +225,7 @@ legend{
     display: none;
 }
 
- 
+
 /* side bar */
 .hot{
     background-color: #232323;
@@ -216,7 +265,7 @@ legend{
     color: white;
     border: 1px solid black;
     margin-bottom: 10px ;
-    
+
 }
 
 
@@ -225,4 +274,3 @@ legend{
     background-color: #323232;
     color: white;
 }
-
