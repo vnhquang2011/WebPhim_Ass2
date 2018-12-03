@@ -2,6 +2,7 @@
   require('libs/db.php');
   session_start();
   error_reporting(E_ALL);
+  $mod='';
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0018)javascript:void(); -->
@@ -14,7 +15,9 @@
   <link href="css/owl.theme.default.min.css" type="text/css" rel="stylesheet">
   <link href="css/style.min.css" type="text/css" rel="stylesheet">
   <?php
-    $mod=$_GET['mod'];
+    if (isset($_GET['mod'])) {
+      $mod=$_GET['mod'];
+    }
     if($mod==''){
       $mod='home';
     }
@@ -84,7 +87,9 @@
         include("movie-hot.php");
       ?>
       <?php
-        $mod=$_GET['mod'];
+        if (isset($_GET['mod'])) {
+          $mod=$_GET['mod'];
+        }
         if($mod=='')$mod='home';
         $mod=str_replace('../','',$mod);
         if(is_file("{$mod}.php"))

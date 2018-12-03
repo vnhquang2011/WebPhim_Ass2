@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 16, 2018 at 03:37 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.0.28
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th12 03, 2018 lúc 05:24 PM
+-- Phiên bản máy phục vụ: 10.1.32-MariaDB
+-- Phiên bản PHP: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,23 +19,22 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `assfilm`
+-- Cơ sở dữ liệu: `assfilm`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Cấu trúc bảng cho bảng `category`
 --
-CREATE DATABASE `assfilm`;
-USE `assfilm`; 
+
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(30) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `category`
+-- Đang đổ dữ liệu cho bảng `category`
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
@@ -62,21 +61,7 @@ INSERT INTO `category` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
---
-
-CREATE TABLE `comment` (
-  `comment_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `film_id` int(11) NOT NULL,
-  `content` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `episode`
+-- Cấu trúc bảng cho bảng `episode`
 --
 
 CREATE TABLE `episode` (
@@ -88,17 +73,18 @@ CREATE TABLE `episode` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `film`
+-- Cấu trúc bảng cho bảng `film`
 --
 
 CREATE TABLE `film` (
-  `ID` int(5) NOT NULL,
+  `id` int(5) NOT NULL,
   `name` varchar(100) NOT NULL,
   `name2` varchar(100) NOT NULL,
   `status` varchar(100) NOT NULL,
   `director` varchar(100) NOT NULL,
   `actor` varchar(100) NOT NULL,
-  `category` int(2) NOT NULL,
+  `category_id` int(2) NOT NULL,
+  `type_movie` int(20) NOT NULL,
   `nation_id` int(100) NOT NULL,
   `year` int(4) NOT NULL,
   `image` varchar(100) NOT NULL,
@@ -109,29 +95,29 @@ CREATE TABLE `film` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `film`
+-- Đang đổ dữ liệu cho bảng `film`
 --
 
-INSERT INTO `film` (`ID`, `name`, `name2`, `status`, `director`, `actor`, `category`, `nation_id`, `year`, `image`, `description`, `duration`, `num_view`, `author`) VALUES
-(1, 'Ghét thì yêu thôi', 'VTV3(2017)', 'Tập 28/28 HD Thuyết Minh', 'Đỗ Thanh Hải', 'Vân Dung, MSUT Chí Trung, Phương Anh, Đình Tú', 17, 2, 2018, '', 'Phim Ghét Thì Yêu Thôi sẽ đem đến cho khán giả những tràng cười thú vị thông qua lời thoại dí dỏm, lối diễn hài tự nhiên của các diễn viên và cả những tình huống dở khóc dở cười xảy ra giữa các cặp đôi oan gia. Phim Ghet Thi Yeu Thoi Tap 8 xoay quanh mối tình đầy ắp những rắc rối, tranh cãi giữa hai bạn trẻ vốn coi nhau là \"kẻ thù không đội trời chung\". đôi bạn trẻ Kim (Phương Anh) và Du (Đình Tú). Cuộc tình của họ khởi đầu như một \"cơn ác mộng\" và cả hai coi nhau như là cái gai trong mắt. Tuy nhiên, sau một sự cố bất ngờ, Kim và Du dần dần hiểu nhau hơn và tình cảm đến một cách tự nhiên.', 45, 0, 'ko xác định'),
-(2, 'KHÁCH SẠN HUYỀN BÍ 3: KỲ NGHỈ MA CÀ RỒNG', 'Hotel Transylvania 3: Summer Vacation(2018)', 'HD Vietsub + Thuyết Minh', 'Genndy Tartakovsky', 'Steve Buscemi, Selena Gomez, Adam Sandler, Kevin James, Andy Samberg', 6, 1, 2015, 'https://phim3s.pw/phim-le/khach-san-huyen-bi-3-ky-nghi-ma-ca-rong_11298/xem-phim/', 'Phim Khách Sạn Huyền Bí 3: Kỳ Nghỉ Ma Cà Rồng lần này sẽ là “cuộc chơi lớn” với một phen tiệc tùng sang chảnh hết nấc của gia đình Dracula. Đã quá “ngán” với cường độ làm việc chăm chỉ 365 ngày không nghỉ, bá tước Dracula quyết định đòi “đình công”. Để khai sáng cho người cha trăm tuổi chưa bao giờ bước ra khỏi “lũy tre làng”, vợ chồng nhà Jonathan – Mavis lập một kế hoạch xả hơi táo bạo: Thuê đứt một du thuyền du lịch hạng sang để đưa tất thảy bộ xậu quái vật già trẻ lớn bé làm một chuyến ra khơi nhớ đời.', 99, 0, 'Nguyễn Văn Đạt');
+INSERT INTO `film` (`id`, `name`, `name2`, `status`, `director`, `actor`, `category_id`, `type_movie`, `nation_id`, `year`, `image`, `description`, `duration`, `num_view`, `author`) VALUES
+(1, 'Ghét thì yêu thôi', 'VTV3(2017)', 'Tập 28/28 HD Thuyết Minh', 'Đỗ Thanh Hải', 'Vân Dung, MSUT Chí Trung, Phương Anh, Đình Tú', 17, 1, 2, 2018, '', 'Phim Ghét Thì Yêu Thôi sẽ đem đến cho khán giả những tràng cười thú vị thông qua lời thoại dí dỏm, lối diễn hài tự nhiên của các diễn viên và cả những tình huống dở khóc dở cười xảy ra giữa các cặp đôi oan gia. Phim Ghet Thi Yeu Thoi Tap 8 xoay quanh mối tình đầy ắp những rắc rối, tranh cãi giữa hai bạn trẻ vốn coi nhau là \"kẻ thù không đội trời chung\". đôi bạn trẻ Kim (Phương Anh) và Du (Đình Tú). Cuộc tình của họ khởi đầu như một \"cơn ác mộng\" và cả hai coi nhau như là cái gai trong mắt. Tuy nhiên, sau một sự cố bất ngờ, Kim và Du dần dần hiểu nhau hơn và tình cảm đến một cách tự nhiên.', 45, 2, 'ko xác định'),
+(2, 'KHÁCH SẠN HUYỀN BÍ 3: KỲ NGHỈ MA CÀ RỒNG', 'Hotel Transylvania 3: Summer Vacation(2018)', 'HD Vietsub + Thuyết Minh', 'Genndy Tartakovsky', 'Steve Buscemi, Selena Gomez, Adam Sandler, Kevin James, Andy Samberg', 6, 2, 1, 2015, 'https://phim3s.pw/phim-le/khach-san-huyen-bi-3-ky-nghi-ma-ca-rong_11298/xem-phim/', 'Phim Khách Sạn Huyền Bí 3: Kỳ Nghỉ Ma Cà Rồng lần này sẽ là “cuộc chơi lớn” với một phen tiệc tùng sang chảnh hết nấc của gia đình Dracula. Đã quá “ngán” với cường độ làm việc chăm chỉ 365 ngày không nghỉ, bá tước Dracula quyết định đòi “đình công”. Để khai sáng cho người cha trăm tuổi chưa bao giờ bước ra khỏi “lũy tre làng”, vợ chồng nhà Jonathan – Mavis lập một kế hoạch xả hơi táo bạo: Thuê đứt một du thuyền du lịch hạng sang để đưa tất thảy bộ xậu quái vật già trẻ lớn bé làm một chuyến ra khơi nhớ đời.', 99, 3, 'Nguyễn Văn Đạt');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nation`
+-- Cấu trúc bảng cho bảng `nation`
 --
 
 CREATE TABLE `nation` (
-  `nation_id` int(11) NOT NULL,
-  `nation_name` varchar(30) CHARACTER SET utf8 NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(30) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `nation`
+-- Đang đổ dữ liệu cho bảng `nation`
 --
 
-INSERT INTO `nation` (`nation_id`, `nation_name`) VALUES
+INSERT INTO `nation` (`id`, `name`) VALUES
 (1, 'Mỹ'),
 (2, 'Việt Nam'),
 (3, 'Pháp'),
@@ -146,7 +132,96 @@ INSERT INTO `nation` (`nation_id`, `nation_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Cấu trúc bảng cho bảng `nav-menu`
+--
+
+CREATE TABLE `nav-menu` (
+  `id` int(20) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `handle` varchar(30) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Đang đổ dữ liệu cho bảng `nav-menu`
+--
+
+INSERT INTO `nav-menu` (`id`, `name`, `handle`) VALUES
+(1, 'thể loại', 'category'),
+(2, 'quốc gia', 'nation'),
+(3, 'phim lẻ', 'single-movie'),
+(4, 'phim bộ', 'series-movie'),
+(5, 'phim chiếu rạp', 'theater-movie');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `series-movie`
+--
+
+CREATE TABLE `series-movie` (
+  `id` int(20) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `year` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Đang đổ dữ liệu cho bảng `series-movie`
+--
+
+INSERT INTO `series-movie` (`id`, `name`, `year`) VALUES
+(1, 'Phim Bộ 2018', 2018),
+(2, 'Phim Bộ 2017', 2017),
+(3, 'Phim Bộ 2016', 2016),
+(4, 'Phim Bộ 2015', 2015);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `single-movie`
+--
+
+CREATE TABLE `single-movie` (
+  `id` int(20) UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `year` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Đang đổ dữ liệu cho bảng `single-movie`
+--
+
+INSERT INTO `single-movie` (`id`, `name`, `year`) VALUES
+(1, 'Phim Lẻ 2018', 2018),
+(2, 'Phim Lẻ 2017', 2017),
+(3, 'Phim Lẻ 2016', 2016),
+(4, 'Phim Lẻ 2015', 2015);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `theater-movie`
+--
+
+CREATE TABLE `theater-movie` (
+  `id` int(20) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf32 NOT NULL,
+  `year` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Đang đổ dữ liệu cho bảng `theater-movie`
+--
+
+INSERT INTO `theater-movie` (`id`, `name`, `year`) VALUES
+(1, 'Phim Chiếu Rạp 2018', 2018),
+(2, 'Phim Chiếu Rạp 2017', 2017),
+(3, 'Phim Chiếu Rạp 2016', 2016),
+(4, 'Phim Chiếu Rạp 2015', 2015);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user`
 --
 
 CREATE TABLE `user` (
@@ -160,7 +235,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Đang đổ dữ liệu cho bảng `user`
 --
 
 INSERT INTO `user` (`ID`, `username`, `password`, `email`, `birthday`, `sex`, `usertype`) VALUES
@@ -173,7 +248,7 @@ INSERT INTO `user` (`ID`, `username`, `password`, `email`, `birthday`, `sex`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usertype`
+-- Cấu trúc bảng cho bảng `usertype`
 --
 
 CREATE TABLE `usertype` (
@@ -182,7 +257,7 @@ CREATE TABLE `usertype` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `usertype`
+-- Đang đổ dữ liệu cho bảng `usertype`
 --
 
 INSERT INTO `usertype` (`type`, `typename`) VALUES
@@ -191,111 +266,138 @@ INSERT INTO `usertype` (`type`, `typename`) VALUES
 (99, 'Admin');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `category`
+-- Chỉ mục cho bảng `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `comment`
---
-ALTER TABLE `comment`
-  ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `film_id` (`film_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `episode`
+-- Chỉ mục cho bảng `episode`
 --
 ALTER TABLE `episode`
   ADD PRIMARY KEY (`id`,`film_id`),
   ADD KEY `film_id` (`film_id`);
 
 --
--- Indexes for table `film`
+-- Chỉ mục cho bảng `film`
 --
 ALTER TABLE `film`
-  ADD PRIMARY KEY (`ID`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `nation_id` (`nation_id`),
-  ADD KEY `category` (`category`);
+  ADD KEY `category` (`category_id`);
 
 --
--- Indexes for table `nation`
+-- Chỉ mục cho bảng `nation`
 --
 ALTER TABLE `nation`
-  ADD PRIMARY KEY (`nation_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Chỉ mục cho bảng `nav-menu`
+--
+ALTER TABLE `nav-menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `series-movie`
+--
+ALTER TABLE `series-movie`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `single-movie`
+--
+ALTER TABLE `single-movie`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `theater-movie`
+--
+ALTER TABLE `theater-movie`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `user_ibfk_1` (`usertype`);
 
 --
--- Indexes for table `usertype`
+-- Chỉ mục cho bảng `usertype`
 --
 ALTER TABLE `usertype`
   ADD PRIMARY KEY (`type`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `comment`
---
-ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `film`
+-- AUTO_INCREMENT cho bảng `film`
 --
 ALTER TABLE `film`
-  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `nation`
+-- AUTO_INCREMENT cho bảng `nation`
 --
 ALTER TABLE `nation`
-  MODIFY `nation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT cho bảng `nav-menu`
+--
+ALTER TABLE `nav-menu`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `series-movie`
+--
+ALTER TABLE `series-movie`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `single-movie`
+--
+ALTER TABLE `single-movie`
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `theater-movie`
+--
+ALTER TABLE `theater-movie`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
   MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `comment`
---
-ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`film_id`) REFERENCES `film` (`ID`),
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`ID`);
-
---
--- Constraints for table `episode`
+-- Các ràng buộc cho bảng `episode`
 --
 ALTER TABLE `episode`
   ADD CONSTRAINT `episode_ibfk_1` FOREIGN KEY (`film_id`) REFERENCES `film` (`ID`);
 
 --
--- Constraints for table `film`
+-- Các ràng buộc cho bảng `film`
 --
 ALTER TABLE `film`
-  ADD CONSTRAINT `film_ibfk_1` FOREIGN KEY (`nation_id`) REFERENCES `nation` (`nation_id`),
-  ADD CONSTRAINT `film_ibfk_2` FOREIGN KEY (`category`) REFERENCES `category` (`id`);
+  ADD CONSTRAINT `film_ibfk_1` FOREIGN KEY (`nation_id`) REFERENCES `nation` (`id`),
+  ADD CONSTRAINT `film_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 
 --
--- Constraints for table `user`
+-- Các ràng buộc cho bảng `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`usertype`) REFERENCES `usertype` (`type`);
