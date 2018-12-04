@@ -1,3 +1,110 @@
+<?php
+  if (!isset($_POST['filter_type'])) {
+    if ($_GET['type'] == 'category') {
+      echo $cate_id = $_GET['id'];
+      echo $sql_filter = "select * from `film` where `category_id` = '$cate_id'";
+    }
+    elseif ($_GET['type'] == 'nation') {
+      echo $nation = $_GET['id'];
+      echo $sql_filter = "select * from `film` where `nation_id` = '$nation'";
+    }
+    elseif ($_GET['type'] == 'single-movie') {
+      echo $year = $_GET['year'];
+      echo $sql_filter = "select * from `film` where `type_movie` = 1 and `year` = '$year'";
+    }
+    elseif ($_GET['type'] == 'series-movie') {
+      echo $year = $_GET['year'];
+      echo $sql_filter = "select * from `film` where `type_movie` = 2 and `year` = '$year'";
+    }
+    else {
+      echo $year = $_GET['year'];
+      echo $sql_filter = "select * from `film` where `type_movie` = 3 and `year` = '$year'";
+    }
+
+  }
+  else {
+    if ($_POST['filter_type'] != '' && $_POST['filter_nation'] == '' && $_POST['filter_year'] == '') {
+      echo $filter_type = $_POST['filter_type'];
+      if ($filter_type == 'filter_id') {
+        echo  $sql_filter = "select * from `film` order by `id` desc ";
+      }
+      elseif ($filter_type == 'filter_view') {
+        echo  $sql_filter = "select * from `film` order by `num_view` desc ";
+      }
+      elseif ($filter_type == 'filter_name_desc') {
+        echo  $sql_filter = "select * from `film` order by `name` desc ";
+      }
+      elseif ($filter_type == 'filter_name_asc') {
+        echo  $sql_filter = "select * from `film` order by `name` asc ";
+      }
+      elseif ($filter_type == 'filter_lenght') {
+        echo  $sql_filter = "select * from `film` order by `duration` desc ";
+      }
+    }
+    // type = 1,nation = 0, year = 0
+    elseif ($_POST['filter_type'] != '' && $_POST['filter_nation'] != '' && $_POST['filter_year'] == '') {
+      $filter_type = $_POST['filter_type'];
+      $filter_nation = $_POST['filter_nation'];
+      if ($filter_type == 'filter_id') {
+        echo  $sql_filter = "select * from `film` where `nation_id` = '$filter_nation' order by `id` desc";
+      }
+      elseif ($filter_type == 'filter_view') {
+        echo  $sql_filter = "select * from `film` where `nation_id` = '$filter_nation' order by `num_view` desc ";
+      }
+      elseif ($filter_type == 'filter_name_desc') {
+        echo  $sql_filter = "select * from `film` where `nation_id` = '$filter_nation' order by `name` desc ";
+      }
+      elseif ($filter_type == 'filter_name_asc') {
+        echo  $sql_filter = "select * from `film` where `nation_id` = '$filter_nation' order by `name` asc ";
+      }
+      elseif ($filter_type == 'filter_lenght') {
+        echo  $sql_filter = "select * from `film` where `nation_id` = '$filter_nation' order by `duration` desc ";
+      }
+    }
+    // type = 1,nation = 1, year = 0
+    elseif ($_POST['filter_type'] != '' && $_POST['filter_nation'] == '' && $_POST['filter_year'] != '') {
+      $filter_type = $_POST['filter_type'];
+      $filter_year = $_POST['filter_year'];
+      if ($filter_type == 'filter_id') {
+        echo  $sql_filter = "select * from `film` where `year` = '$filter_year' order by `id` desc";
+      }
+      elseif ($filter_type == 'filter_view') {
+        echo  $sql_filter = "select * from `film` where `year` = '$filter_year' order by `num_view` desc ";
+      }
+      elseif ($filter_type == 'filter_name_desc') {
+        echo  $sql_filter = "select * from `film` where `year` = '$filter_year' order by `name` desc ";
+      }
+      elseif ($filter_type == 'filter_name_asc') {
+        echo  $sql_filter = "select * from `film` where `year` = '$filter_year' order by `name` asc ";
+      }
+      elseif ($filter_type == 'filter_lenght') {
+        echo  $sql_filter = "select * from `film` where `year` = '$filter_year' order by `duration` desc ";
+      }
+    }
+    // type = 1,nation = 0, year = 1
+    elseif ($_POST['filter_type'] != '' && $_POST['filter_nation'] != '' && $_POST['filter_year'] != '') {
+      $filter_type = $_POST['filter_type'];
+      $filter_nation = $_POST['filter_nation'];
+      $filter_year = $_POST['filter_year'];
+      if ($filter_type == 'filter_id') {
+        echo  $sql_filter = "select * from `film` where `nation_id` = '$filter_nation' and `year` = '$filter_year'  order by `id` desc";
+      }
+      elseif ($filter_type == 'filter_view') {
+        echo  $sql_filter = "select * from `film` where `nation_id` = '$filter_nation' and `year` = '$filter_year' order by `num_view` desc";
+      }
+      elseif ($filter_type == 'filter_name_desc') {
+        echo  $sql_filter = "select * from `film` where `nation_id` = '$filter_nation' and `year` = '$filter_year' order by `name` desc";
+      }
+      elseif ($filter_type == 'filter_name_asc') {
+        echo  $sql_filter = "select * from `film` where `nation_id` = '$filter_nation' and `year` = '$filter_year' order by `name` asc";
+      }
+      elseif ($filter_type == 'filter_lenght') {
+        echo  $sql_filter = "select * from `film` where `nation_id` = '$filter_nation' and `year` = '$filter_year' order by `duration` desc";
+      }
+    }
+    // type = 1,nation = 1, year = 1
+  }
+?>
 <div id="content">
   <div class="block" id="page-list">
     <div class="blocktitle breadcrumbs">
@@ -11,72 +118,44 @@
       </div>
     </div>
     <div class="filter">
-      <form method="" action="danh-sach/phim-chieu-rap/">
-        <div class="item"><span>Sắp xếp </span>
-          <select class="input" name="order_by">
-            <option value="">-Mặc định-</option>
-            <option value="has_speaker">Thuyết minh</option>
-            <option value="last_update">Mới update</option>
-            <option value="year">Năm phát hành</option>
-            <option value="title">Tiêu đề phim</option>
-            <option value="views">Lượt xem</option>
-            <option value="liked_times">Số lượt thích</option>
-          </select></div>
-        <div class="item"><span>Thể loại</span>
-          <select class="input" name="category_id">
-            <option value="">-Tất cả-</option>
-            <option value="26">Thuyết Minh</option>
-            <option value="27">Thiếu nhi</option>
-            <option value="1">Hành Động</option>
-            <option value="17">Võ Thuật</option>
-            <option value="13">Tâm Lý</option>
-            <option value="4">Hài Hước</option>
-            <option value="6">Hoạt Hình</option>
-            <option value="7">Phiêu Lưu</option>
-            <option value="8">Kinh Dị</option>
-            <option value="5">Hình Sự</option>
-            <option value="2">Chiến Tranh</option>
-            <option value="16">Thần Thoại</option>
-            <option value="20">Viễn Tưởng</option>
-            <option value="3">Cổ Trang</option>
-            <option value="23">Khoa học Tài liệu</option>
-            <option value="19">Âm Nhạc</option>
-            <option value="22">TV Show</option>
-            <option value="24">Bí Mật Điện Ảnh</option>
-            <option value="25">Hài Việt</option>
-          </select></div>
+      <form method="post" action="?mod=list&type=<?php echo $_GET['type']?>&id=<?php echo $_GET['id'] ?>">
+        <div class="item"><span>Sắp xếp</span>
+          <select class="input" name="filter_type">
+            <option >-Mặc định-</option>
+            <option value="filter_id">Mới nhất</option>
+            <option value="filter_name_asc">Tiêu đề phim A-Z</option>
+            <option value="filter_name_desc">Tiêu đề phim Z-A</option>
+            <option value="filter_view">Lượt xem</option>
+            <option value="filter_lenght">Thời lượng dài nhất</option>
+          </select>
+        </div>
         <div class="item"><span>Quốc gia</span>
-          <select class="input" name="country_id">
+          <select class="input" name="filter_nation">
             <option value="">-Tất cả-</option>
-            <option value="1">Mỹ</option>
-            <option value="3">Hàn Quốc</option>
-            <option value="2">Trung Quốc</option>
-            <option value="8">Hồng Kong</option>
-            <option value="4">Việt Nam</option>
-            <option value="10">Nhật Bản</option>
-            <option value="7">Ấn Độ</option>
-            <option value="9">Thái Lan</option>
-            <option value="13">Pháp</option>
-            <option value="12">Anh</option>
-            <option value="11">Khác</option>
+            <?php
+              $query = mysqli_query($link, 'select * from `nation`');
+              while ($r=mysqli_fetch_assoc($query)) {
+            ?>
+              <option value="<?php echo $r['id'] ?>"><?php echo $r['name'] ?></option>
+            <?php
+              }
+            ?>
           </select>
         </div>
         <div class="item"><span>Năm</span>
-          <select class="input" name="year">
+          <select class="input" name="filter_year">
             <option value="">-Tất cả-</option>
-            <option value="2017">2017</option>
-            <option value="2016">2016</option>
-            <option value="2015">2015</option>
-            <option value="2014">2014</option>
-            <option value="2013">2013</option>
-            <option value="2012">2012</option>
-            <option value="2011">2011</option>
-            <option value="2010">2010</option>
-            <option value="2009">2009</option>
+            <?php
+              for ($i=2018; $i >= 2015 ; $i--) {
+            ?>
+              <option value="<?php echo $i ?>"><?php echo $i ?></option>
+            <?php
+              }
+            ?>
           </select>
         </div>
         <div class="btn1">
-          <button type="button" class="btn" id="locphim">Lọc phim</button>
+          <button type="submit" class="btn" id="locphim">Lọc phim</button>
         </div>
       </form>
     </div>
@@ -169,90 +248,6 @@
                   <div class="name2">The Ghost Detective</div>
                 </div>
                 <div class="status">HD Vietsub</div>
-              </div>
-            </li>
-            <li data-liked="3,677" data-views="38,175">
-              <div class="inner"><a href="detail.html" title="Run Rẩy Đi A Bộ 2"><img src="images/bddt.jpg"
-                    alt=""></a>
-                <div class="info">
-                  <div class="name"><a href="detail.html" title="Run Rẩy Đi A Bộ 2">Run Rẩy Đi A Bộ 2</a></div>
-                  <div class="name2">Let's Shake It 2</div>
-                </div>
-                <div class="status">HD Vietsub</div>
-              </div>
-            </li>
-            <li data-liked="5,007" data-views="212,700">
-              <div class="inner"><a href="detail.html" title="Điệp Viên Terius"><img src="images/bddt.jpg"
-                    alt=""></a>
-                <div class="info">
-                  <div class="name"><a href="detail.html" title="Điệp Viên Terius">Điệp Viên Terius</a></div>
-                  <div class="name2">Terius Phía Sau Tôi...</div>
-                </div>
-                <div class="status">HD Vietsub</div>
-              </div>
-            </li>
-            <li data-liked="3,735" data-views="274,950">
-              <div class="inner"><a href="detail.html" title="Minh Hồng Truyện"><img src="images/bddt.jpg"
-                    alt=""></a>
-                <div class="info">
-                  <div class="name"><a href="detail.html" title="Minh Hồng Truyện">Minh Hồng Truyện</a></div>
-                  <div class="name2">Myth Of Sword</div>
-                </div>
-                <div class="status">HD Vietsub</div>
-              </div>
-            </li>
-            <li data-liked="5,003" data-views="83,400">
-              <div class="inner"><a href="detail.html" title="Niềm Vui Hiểm Ác"><img src="images/bddt.jpg"
-                    alt=""></a>
-                <div class="info">
-                  <div class="name"><a href="detail.html" title="Niềm Vui Hiểm Ác">Niềm Vui Hiểm Ác</a></div>
-                  <div class="name2">Devilish Joy</div>
-                </div>
-                <div class="status">HD Vietsub</div>
-              </div>
-            </li>
-            <li data-liked="3,909" data-views="23,100">
-              <div class="inner"><a href="detail.html" title="Hai Mạng Sống, Một Trái Tim"><img src="images/bddt.jpg"
-                    alt=""></a>
-                <div class="info">
-                  <div class="name"><a href="detail.html" title="Hai Mạng Sống, Một Trái Tim">Hai Mạng Sống,
-                      Một Trái Tim</a></div>
-                  <div class="name2">Two Lives One Heart</div>
-                </div>
-                <div class="status">HD Vietsub</div>
-              </div>
-            </li>
-            <li data-liked="600" data-views="302,925">
-              <div class="inner"><a href="detail.html" title="Chờ Tới Khi Khói Mưa Ấm Áp"><img src="images/bddt.jpg"
-                    alt=""></a>
-                <div class="info">
-                  <div class="name"><a href="detail.html" title="Chờ Tới Khi Khói Mưa Ấm Áp">Chờ Tới Khi Khói
-                      Mưa Ấm Áp</a></div>
-                  <div class="name2">Buried City To Shut All...</div>
-                </div>
-                <div class="status">HD Vietsub</div>
-              </div>
-            </li>
-            <li data-liked="2,506" data-views="21,375">
-              <div class="inner"><a href="detail.html" title="Sức Mạnh Lời Nguyện Cầu"><img src="images/bddt.jpg"
-                    alt=""></a>
-                <div class="info">
-                  <div class="name"><a href="detail.html" title="Sức Mạnh Lời Nguyện Cầu">Sức Mạnh Lời Nguyện
-                      Cầu</a></div>
-                  <div class="name2">Duay Rang Atitharn</div>
-                </div>
-                <div class="status">HD Vietsub</div>
-              </div>
-            </li>
-            <li data-liked="2,684" data-views="8,635,020">
-              <div class="inner"><a href="detail.html" title="Gia Đình Vui Vẻ"><img src="images/bddt.jpg"
-                    alt=""></a>
-                <div class="info">
-                  <div class="name"><a href="detail.html" title="Gia Đình Vui Vẻ">Gia Đình Vui Vẻ</a></div>
-                  <div class="name2">Virtues Of Harmony</div>
-                </div>
-                <div class="status">HD Vietsub</div>
-
               </div>
             </li>
           </ul>

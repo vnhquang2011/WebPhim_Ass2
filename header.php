@@ -21,11 +21,6 @@
 <div id="nav">
   <ul class="container menu">
     <li class="home"><a href="index.php" title=""></a></li>
-    <!-- <li class=""><a>Thể loại</a>
-      <ul class="sub-menu" style="display: none;">
-        <li class=""><a href="list_film.html" title="Phim Thuyết Minh">Phim Thuyết Minh</a></li>
-      </ul>
-    </li> -->
     <?php
       $sql = 'select * from `nav-menu`';
       $query = mysqli_query($link,$sql);
