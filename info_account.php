@@ -1,18 +1,44 @@
 <?php 
   require_once("libs/db.php");
-  //$query="SELECT username email birthday sex FROM user WHERE username='thien'";
+  $_SESSION['username']="Van";
+  $username = $_SESSION['username'];
+  $query="SELECT * FROM user WHERE username= '$username'";
+
+  $result=mysqli_query($link,$query);
+  
+
+  if(mysqli_num_rows($result) < 1){
+    echo "Username không tồn tại";
+  }
+  
+  $info = mysqli_fetch_array($result);
+
+  $name  = $info['username'];
+  $birthday=$info['birthday'];
+  $sex = $info['sex'];
+  $id=$info['ID'];
+
+ 
+
   if(isset($_POST["button_update"])){
     $username = $_POST["username"];
-    //$password = $_POST["update[password]"];
-    echo $username;
-    $query="SELECT username,email,sex,birthday FROM user WHERE username= 'thien' ";
-    $result=mysqli_query($link,$query);
-    // if(mysqli_num_rows($result) < 1){
-    //   echo "Username không tồn tại";
-    // }
-    $info = mysqli_fetch_array($result);
-    echo $info['username'];
-    echo "success";
+    $password = $_POST["password1"];
+    
+    $hash = password_hash($password, PASSWORD_BCRYPT);
+    $email = $_POST["email"];
+    $fullName = $_POST["fullname"];
+    $birthday = $_POST["birthday"];
+    $gender = $_POST["gender"];
+ 
+    echo $gender;
+    $sql = "UPDATE user SET 
+              username = '$username',
+              password = '$hash',
+              email = '$email',
+              birthday = '$birthday',
+              sex = '$gender'
+            WHERE ID = $id;";  
+    mysqli_query($link,$sql);                                          
   }
 ?>
  
@@ -34,28 +60,11 @@
 </head>
   <body style="position: relative;">
     <div id="wrapper">
-      <div id="header">
-        <div class="container">
-          <h1 id="logo"><a href="detail.html" title="Xem Phim" target="_blank">Xem phim</a></h1>
-          <div id="search">
-            <form method="get" action="javascript:void();"><input type="text" autocomplete="off" name="keyword"
-                placeholder="Tên phim hoặc diễn viên cần tìm..." class="keyword"><button type="submit" class="submit"></button></form>
-          </div>
-          <div id="sign">
-            <div class="login "><a rel="nofollow" href="signUp.html">Đăng nhập</a>
-              <div class="login-form">
-                <form method="post" action="javascript:void();">
-                  <div><input type="text" placeholder="Tên đăng nhập" class="input username" name="username"></div>
-                  <div><input type="password" placeholder="Mật khẩu" class="input password" name="password"></div>
-                  <div><label class="remember"><input type="checkbox" value="1" class="checkbox" name="remember">
-                      Remember</label><button type="submit" class="submit">Đăng nhập</button></div>
-                </form>
-              </div>
-            </div>
-            <div class="links"><a rel="nofollow" href="signUp.html">Đăng ký thành viên</a></div>
-          </div>
-        </div>
-      </div>
+
+
+      <?php
+        include('header.php');
+        ?>
       
       <div id="body-wrap" class="container">
       </div>    
@@ -68,7 +77,7 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Tài khoản</label>
             <div class="col-lg-7">
-              <input type="text" class="form-control" name="username" id="update-username" value="">
+              <input type="text" class="form-control" name="username" id="update-username" value="<?php echo htmlentities($name); ?>">
               <label class="notifyerror" style="visibility: hidden; height: 0px" id="usernameerror">Tên tài khoản chỉ bao gồm ký tự a-z, A-Z và số</label>
             </div>
           </div>
@@ -76,7 +85,7 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Mật khẩu cũ</label>
             <div class="col-lg-7">
-              <input type="password" class="form-control" name="update[password]" id="password" value="">
+              <input type="password" class="form-control" name="password" id="password" value="">
               <label class="notifyerror" style="visibility: hidden; height: 0px" id="passworderror">Mật khẩu phải bao gồm chữ thường, chữ hoa và số, độ dài tối thiểu 8 ký tự</label>
             </div>
           </div>
@@ -84,7 +93,7 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Mật khẩu mới</label>
             <div class="col-lg-7">
-              <input type="password" class="form-control" name="update[password1]" id="password1" value="">
+              <input type="password" class="form-control" name="password1" id="password1" value="">
               <label class="notifyerror" style="visibility: hidden; height: 0px" id="password1error">Mật khẩu phải bao gồm chữ thường, chữ hoa và số, độ dài tối thiểu 8 ký tự</label>
             </div>
           </div>
@@ -93,7 +102,7 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Xác nhận mật khẩu</label>
             <div class="col-lg-7">
-              <input type="password" class="form-control" name="update[password2]" id="password2" value="">
+              <input type="password" class="form-control" name="password2" id="password2" value="">
               <label class="notifyerror" style="visibility: hidden; height: 0px" id="password2error1">Mật khẩu phải bao gồm chữ thường, chữ hoa và số, độ dài tối thiểu 8 ký tự</label>
             </div>
           </div>
@@ -101,14 +110,14 @@
             <div class="form-group">
               <label class="col-lg-3 control-label">Họ tên</label>
               <div class="col-lg-7">
-                <input type="text" class="form-control" name="update[fullname]" id="update-fullname" value="">
+                <input type="text" class="form-control" name="fullname" id="update-fullname" value="">
                 <label class="notifyerror" style="visibility: hidden; height: 0px" id="fullnameerror">Tên chỉ bao gồm các chữ cái</label>  
               </div>
             </div>
             
             <div class="form-group">
                 <label class="col-lg-3 control-label">Email</label>
-                <div class="col-lg-7"><input type="email" class="form-control" name="update[email]" id="update-email">
+                <div class="col-lg-7"><input type="email" class="form-control" name="email" id="update-email">
                 <label class="notifyerror" style="visibility: hidden; height: 0px" id="emailerror">Email không đúng định dạng name@domain</label>  
                 </div>
             </div>
@@ -116,15 +125,23 @@
             <div class="form-group">
                 <label class="col-lg-3 control-label">Số ĐT</label>
                 <div class="col-lg-7">
-                  <input type="text" class="form-control" name="update[phone]" id="update-phone">
+                  <input type="text" class="form-control" name="phone" id="update-phone">
                   <label class="notifyerror" style="visibility: hidden; height: 0px" id="phoneerror">Số điện thoại gồm 9 chữ số</label>  
                 </div>
             </div>
 
             <div class="form-group">
+                <label class="col-lg-3 control-label">Ngày sinh</label>
+                <div class="col-lg-7">
+                  <input type="date" class="form-control" name="birthday" id="birthday" 
+                  value="<?php echo $birthday; ?>">
+                </div>
+            </div>
+
+            <!-- <div class="form-group">
               <label class="col-lg-3 control-label">Ngày sinh</label>
               <div class="col-lg-2">
-                <select class="form-control" name="update[birthday][day]" id="update-birthday-day">
+                <select class="form-control" name="birthdayday" id="update-birthday-day">
                   <option value="">Ngày</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -158,10 +175,10 @@
                   <option value="30">30</option>
                   <option value="31">31</option>
                 </select>
-              </div>
+              </div> -->
             
-            <div class="col-lg-2">
-              <select class="form-control" name="update[birthday][month]" id="update-birthday-month">
+            <!-- <div class="col-lg-2">
+              <select class="form-control" name="birthdaymonth" id="update-birthday-month">
                 <option value="">Tháng</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -179,7 +196,7 @@
               </select>
             </div>
             <div class="col-lg-2">
-              <select class="form-control" name="update[birthday][year]" id="update-birthday-year">
+              <select class="form-control" name="birthdayyear" id="update-birthday-year">
                 <option value="">Năm</option>
                 <option value="2018">2018</option>
                 <option value="2017">2017</option>
@@ -282,16 +299,18 @@
                 <option value="1920">1920</option>
                 <option value="1919">1919</option>
               </select>
-            </div>
+            </div> -->
 
-            </div>
+            <!-- </div> -->
             <div class="form-group">
               <label class="col-lg-3 control-label">Giới tính</label>
               <div class="col-lg-7">
                 <label class="checkbox-inline">
-                  <input type="radio" name="update[gender]" id="update-gender-male" value="male" checked=""> Nam</label>
+                  <input type="radio" name="gender" id="update-gender-male" value="male" 
+                  <?php echo ($sex=='male')?'checked':'' ?>> Nam</label>
                   <label class="checkbox-inline">
-                    <input type="radio" name="update[gender]" id="update-gender-female" value="female"> Nữ
+                  <input type="radio" name="gender" id="update-gender-female" value="female"
+                  <?php echo ($sex=='female')?'checked':'' ?>> Nữ
                   </label>
               </div>
             </div>
@@ -308,38 +327,9 @@
           </form>
       </div>
     
-      <div id="footer">
-        <div class="container">
-          <div class="desc">
-            <p><a href="detail.html" title="webphim">webphim</a> - <a href="detail.html" title="Xem phim online"><strong>Xem
-                  phim online</strong></a> miễn phí, chất lượng hình ảnh rõ nét, tốc độ tải phim nhanh, <a href="detail.html"
-                title="Xem phim"><strong>xem phim</strong></a> không phải chờ đợi lâu. webphim luôn cập nhật <a title="Phim mới"
-                href="detail.html"><strong>phim mới</strong></a> để mang đến cho các bạn những bộ <a title="Phim hành động"
-                href="detail.html"><strong>phim hành động</strong></a>, võ thuật, <a title="Phim chiếu rạp" href="detail.html"><strong>phim
-                  chiếu rạp</strong></a>, các thể loại phim tâm lý, tình
-              cảm cực lôi cuốn và hấp dẫn nhất. Đặc biệt website rất thân thiện với người dùng và hạn chế tối đa các
-              quảng cáo gây khó chịu khi <strong>xem phim</strong>. Chúc các bạn <strong>xem phim</strong> vui vẻ.</p>
-          </div>
-          <div id="info">
-            <div class="column">
-              <div class="heading">Liên hệ</div>
-              <ul>
-                <li><a href="detail.html">Liên hệ quảng cáo</a></li>
-                <li><a href="detail.html">Hợp tác nội dung</a></li>
-                <li><a href="detail.html">Đăng tải phim</a></li>
-              </ul>
-            </div>
-            <div class="column">
-              <div class="heading">Điều khoản sử dụng</div>
-              <ul>
-                <li><a href="detail.html">Điều khoản chung</a></li>
-                <li><a href="detail.html">Bản quyền và trách nhiệm nội dung</a></li>
-              </ul>
-            </div>
-            <div class="clear"></div>
-          </div>
-        </div>
-      </div>
+      <?php 
+      include('footer.php');
+      ?>
 
     <!-- <script language="javascript">
       var username = document.getElementById("update-username");
@@ -419,33 +409,33 @@
 
         if(email.value.toString().length <= 0){
           alert("Bạn chưa nhập email");
-          checkpass();
+          checkemail();
           return false;
         }
 
         if(phone.value.toString().length <= 0){
           alert("Bạn chưa nhập số điện thoại");
-          checkpass();
+          checkphone();
           return false;
         }
 
-        if(update_birthday_day.value.toString().localeCompare("Ngày") == 0){
-          alert("Bạn chưa chọn Ngày");
-          checkpass();
-          return false;
-        }
+        // if(update_birthday_day.value.toString().localeCompare("Ngày") == 0){
+        //   alert("Bạn chưa chọn Ngày");
+        //   checkbirthday();
+        //   return false;
+        // }
 
-        if(update_birthday_month.value.toString().localeCompare("Tháng") == 0){
-          alert("Bạn chưa chọn Tháng");
-          checkpass();
-          return false;
-        }
+        // if(update_birthday_month.value.toString().localeCompare("Tháng") == 0){
+        //   alert("Bạn chưa chọn Tháng");
+        //   checkbirthday();
+        //   return false;
+        // }
 
-        if(update_birthday_year.value.toString().localeCompare("Năm") == 0){
-          alert("Bạn chưa chọn Năm");
-          checkpass();
-          return false;
-        }
+        // if(update_birthday_year.value.toString().localeCompare("Năm") == 0){
+        //   alert("Bạn chưa chọn Năm");
+        //   checkbirthday();
+        //   return false;
+        // }
 
         var validName = checkname();
         var validPass = checkpass();
@@ -460,10 +450,10 @@
         var validFullname = checkfullname();
         var validEmail = checkemail();
         var validPhone = checkphone();
-        var validBirthday = checkbirthday(update_birthday_day.value,update_birthday_month.value,update_birthday_year.value);
+        // var validBirthday = checkbirthday(update_birthday_day.value,update_birthday_month.value,update_birthday_year.value);
 
         if(validName && validPass && validNewPass1 && validNewPass2 && validFullname && validEmail && validPhone && validBirthday){
-          alert("Validation");
+          return true;
         }
         return false;
       }

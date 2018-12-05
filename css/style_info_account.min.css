@@ -3037,8 +3037,6 @@ span.page_nav {
   }
 }
   
-
-  
   .btn-cs:hover{
     color: #dacb46;
   }
@@ -4337,11 +4335,6 @@ a:hover {
   outline: none;
 }
 
-h1 {
-  margin: 0.67em 0;
-  font-size: 2em;
-}
-
 abbr[title] {
   border-bottom: 1px dotted;
 }
@@ -4702,102 +4695,6 @@ h6,
   line-height: 1.1;
 }
 
-h1 small,
-h2 small,
-h3 small,
-h4 small,
-h5 small,
-h6 small,
-.h1 small,
-.h2 small,
-.h3 small,
-.h4 small,
-.h5 small,
-.h6 small {
-  font-weight: normal;
-  line-height: 1;
-  color: #999999;
-}
-
-h1,
-h2,
-h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-h4,
-h5,
-h6 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-h1,
-.h1 {
-  font-size: 38px;
-}
-
-h2,
-.h2 {
-  font-size: 32px;
-}
-
-h3,
-.h3 {
-  font-size: 24px;
-}
-
-h4,
-.h4 {
-  font-size: 18px;
-}
-
-h5,
-.h5 {
-  font-size: 14px;
-}
-
-h6,
-.h6 {
-  font-size: 12px;
-}
-
-h1 small,
-.h1 small {
-  font-size: 24px;
-}
-
-h2 small,
-.h2 small {
-  font-size: 18px;
-}
-
-h3 small,
-.h3 small,
-h4 small,
-.h4 small {
-  font-size: 14px;
-}
-
-.page-header {
-  padding-bottom: 9px;
-  margin: 40px 0 20px;
-  border-bottom: 1px solid #eeeeee;
-}
-
-ul,
-ol {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-ul ul,
-ol ul,
-ul ol,
-ol ol {
-  margin-bottom: 0;
-}
 
 .list-unstyled {
   padding-left: 0;
