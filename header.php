@@ -27,7 +27,7 @@
       <div class="links"><a rel="nofollow" href="signUp.html">Đăng ký thành viên</a></div>
     </div>
   </div>
-</div>
+</div> 
 <script type="text/javascript">
   var x = document.getElementById("login-form");
   $('#log').on('click',function(){
