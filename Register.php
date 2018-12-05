@@ -119,7 +119,7 @@
           
 
             <div class="col-offset-3 col-lg-10">
-              <button type="submit" class="btn btn-primary" id="button_update" name="button_update">Đăng kí</button>
+              <button type="submit" class="btn btn-primary" id="button_update" name="button_update">Đăng kí </button>
             </div>
 
             <div class="clear"></div>
