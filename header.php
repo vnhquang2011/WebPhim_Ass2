@@ -24,7 +24,7 @@
         </form>
         </div>
       </div>
-      <div class="links"><a rel="nofollow" href="signUp.html">Đăng ký thành viên</a></div>
+      <div class="links"><a rel="nofollow" href="register.php">Đăng ký thành viên</a></div>
     </div>
   </div>
 </div> 
