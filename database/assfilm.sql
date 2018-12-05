@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `assfilm`
 --
-
+CREATE DATABASE `assfilm`;
+USE `assfilm`;
 -- --------------------------------------------------------
 
 --
