@@ -5,19 +5,40 @@
       <form method="get" action="javascript:void();"><input type="text" autocomplete="off" name="keyword" placeholder="Tên phim hoặc diễn viên cần tìm..." class="keyword"><button type="submit" class="submit"></button></form>
     </div>
     <div id="sign">
-      <div class="login "><a rel="nofollow" href="javascript:void();">Đăng nhập</a>
-        <div class="login-form">
-          <form method="post" action="javascript:void();">
-            <div><input type="text" placeholder="Tên đăng nhập" class="input username" name="username"></div>
-            <div><input type="password" placeholder="Mật khẩu" class="input password" name="password"></div>
-            <div><label class="remember"><input type="checkbox" value="1" class="checkbox" name="remember"> Remember</label><button type="submit" class="submit">Đăng nhập</button></div>
-          </form>
+<!-- Van modified ↓↓ -->
+      <div class="login"><a rel="nofollow" href="javascript:void();" id="log">Đăng nhập</a>
+        <div class="login-form" id="login-form" style="display: none;">
+        <form method="post" action="login.php">
+          <div>
+            <input type="text" placeholder="Tên đăng nhập" class="input username" name="username">
+          </div>
+          <div>
+            <input type="password" placeholder="Mật khẩu" class="input password" name="password">
+          </div>
+          <div>
+            <label class="remember">
+              <input type="checkbox" checked="checked" class="checkbox" name="remember"> Remember
+            </label>
+          <button type="submit" class="submit" name="btn_login">Đăng nhập</button>
+          </div>
+        </form>
         </div>
       </div>
       <div class="links"><a rel="nofollow" href="signUp.html">Đăng ký thành viên</a></div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  var x = document.getElementById("login-form");
+  $('#log').on('click',function(){
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+  });
+</script>
+<!-- Van modified ↑↑ -->
 <div id="nav">
   <ul class="container menu">
     <li class="home"><a href="index.php" title=""></a></li>
