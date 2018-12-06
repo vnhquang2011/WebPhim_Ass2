@@ -50,13 +50,25 @@
       <?php
         include("header.php");
       ?>
-      <div id="body-wrap" class="container">
-      </div>
+      <style >
+        #nav2{
+          margin-bottom:0px !important;
+        }
+        #wrapper>div{
+          background-color: black;
+        }
+        #footer{
+          margin-top:0px;
+        }
+      </style>
+      <!-- <div id="body-wrap" class="container"> 
+      </div> -->
 
-      <h3 style="margin-bottom: 20px; font-size:30px;text-align:center; ">Đăng kí thành viên</h3>
+      <h3 style="font-size:30px;text-align:center; background-color: black;margin-bottom:0px;margin-top:0px;">Đăng kí thành viên</h3>
 
       <div class="form-update">
-        <form method="post" id="form-update" name="form-update" class="form-horizontal" action="" role="form">
+        <form method="post" id="form-update" name="form-update" class="form-horizontal" action="" role="form" style="
+    padding: 20px;">
 
           <div class="form-group">
             <label class="col-lg-3 control-label">Tài khoản</label>
