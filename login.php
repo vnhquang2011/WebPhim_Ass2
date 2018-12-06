@@ -33,8 +33,6 @@
                 else{
                     //member
                     header('Location:index.php');
-                    //guest ??
-                    header('Location:index.php');
                 }
             }
             else{
