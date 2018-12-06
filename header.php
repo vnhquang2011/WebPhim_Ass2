@@ -38,14 +38,6 @@
     }
   });
 </script>
-<?php
-  if(isset($_SESSION['username']) && isset($_SESSION['password'])){
-    <script>
-      echo haha;
-      .login 
-    </script>
-  }
-?>
 <!-- Van modified ↑↑ -->
 <div id="nav">
   <ul class="container menu">
