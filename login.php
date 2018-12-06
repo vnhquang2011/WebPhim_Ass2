@@ -31,7 +31,7 @@
                     header('Location:admin/index.php');
                 }
                 else{
-                    //member 
+                    //member  
                     header('Location:index.php');
                 }
             }
