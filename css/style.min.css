@@ -795,9 +795,9 @@ img.captcha-image {
 
 #info {
   background: url(../images/bgfooter.png) repeat-x #000;
-  float: right;2
+  float: right;
   margin-top: 1px;
-  padding: 0px;
+  padding: 20px;
   width: 260px;
   font-size: 11px;
   border-width: 0 1px 1px;

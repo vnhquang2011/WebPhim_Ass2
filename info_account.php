@@ -18,7 +18,6 @@
   $sex = $info['sex'];
   $id=$info['ID'];
 
- 
 
   if(isset($_POST["button_update"])){
     $username = $_POST["username"];
@@ -30,7 +29,6 @@
     $birthday = $_POST["birthday"];
     $gender = $_POST["gender"];
  
-    echo $gender;
     $sql = "UPDATE user SET 
               username = '$username',
               password = '$hash',
@@ -417,18 +415,16 @@
       include('footer.php');
       ?>
 
-    <!-- <script language="javascript">
+    <script language="javascript">
       var username = document.getElementById("update-username");
       var password = document.getElementById("password");
       var password1 = document.getElementById("password1");
       var password2 = document.getElementById("password2");
       var fullname = document.getElementById("update-fullname");
       var email = document.getElementById("update-email");
-      var phone = document.getElementById("update-phone");
       var button_update = document.getElementById("button_update");
-      var update_birthday_day = document.getElementById("update-birthday-day");
-      var update_birthday_month = document.getElementById("update-birthday-month");
-      var update_birthday_year = document.getElementById("update-birthday-year");
+      var update_birthday = document.getElementById("birthday");
+  
 
       var usernameerror = document.getElementById("usernameerror");
       var passworderror = document.getElementById("passworderror");
@@ -441,7 +437,6 @@
       var regUsername = /^[A-Za-z0-9]+$/;
       var regFullname = /^[A-Za-z ]+$/;
       var regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      var regPhone =  /^\d{10}$/;
       var regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
 
       var errorPasswordDefault = (passworderror.innerText || passworderror.textContent);
@@ -470,10 +465,6 @@
         checkemail();
       }
 
-      phone.onchange = function(){
-        checkphone();
-      }
-
       button_update.onclick = function(){
         if(username.value.toString().length <= 0){
           alert("Bạn chưa nhập tên tài khoản");
@@ -499,30 +490,6 @@
           return false;
         }
 
-        if(phone.value.toString().length <= 0){
-          alert("Bạn chưa nhập số điện thoại");
-          checkphone();
-          return false;
-        }
-
-        // if(update_birthday_day.value.toString().localeCompare("Ngày") == 0){
-        //   alert("Bạn chưa chọn Ngày");
-        //   checkbirthday();
-        //   return false;
-        // }
-
-        // if(update_birthday_month.value.toString().localeCompare("Tháng") == 0){
-        //   alert("Bạn chưa chọn Tháng");
-        //   checkbirthday();
-        //   return false;
-        // }
-
-        // if(update_birthday_year.value.toString().localeCompare("Năm") == 0){
-        //   alert("Bạn chưa chọn Năm");
-        //   checkbirthday();
-        //   return false;
-        // }
-
         var validName = checkname();
         var validPass = checkpass();
 
@@ -535,18 +502,12 @@
         }
         var validFullname = checkfullname();
         var validEmail = checkemail();
-        var validPhone = checkphone();
         // var validBirthday = checkbirthday(update_birthday_day.value,update_birthday_month.value,update_birthday_year.value);
 
-        if(validName && validPass && validNewPass1 && validNewPass2 && validFullname && validEmail && validPhone && validBirthday){
+        if(validName && validPass && validNewPass1 && validNewPass2 && validFullname && validEmail && validBirthday){
           return true;
         }
         return false;
-      }
-
-      function checkbirthday(day, month, year){
-        var d = new Date(year, month - 1, day); 
-        return d && (d.getMonth() + 1) == month;
       }
 
       function checkNewpassword(){
@@ -598,19 +559,6 @@
         else{
           passworderror.style.visibility = 'hidden';
           passworderror.style.height = '0px';
-          return true;
-        }
-      }
-
-      function checkphone(){
-        if(!regPhone.test(phone.value)){
-          phoneerror.style.visibility = 'visible';
-          phoneerror.style.height = 'auto';
-          return false;
-        }
-        else{
-          phoneerror.style.visibility = 'hidden';
-          phoneerror.style.height = '0px';
           return true;
         }
       }
@@ -671,7 +619,7 @@
       }
 
     
-    </script> -->
+    </script>
 
   </body>
 </html>
