@@ -1,6 +1,6 @@
 <div id="header">
   <div class="container">
-    <h1 id="logo"><a href="javascript:void();" title="Xem Phim" target="_blank">Xem phim</a></h1>
+    <h1 id="logo"><a href="javascript:void();" title="Xem Phim">Xem phim</a></h1>
     <div id="search">
       <form method="get" action="javascript:void();"><input type="text" autocomplete="off" name="keyword" placeholder="Tên phim hoặc diễn viên cần tìm..." class="keyword"><button type="submit" class="submit"></button></form>
     </div>
@@ -27,7 +27,7 @@
       <div class="links"><a rel="nofollow" href="register.php">Đăng ký thành viên</a></div>
     </div>
   </div>
-</div> 
+</div>
 <script type="text/javascript">
   var x = document.getElementById("login-form");
   $('#log').on('click',function(){

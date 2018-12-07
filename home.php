@@ -14,7 +14,7 @@
             $query = mysqli_query($link, $sql);
             while($r=mysqli_fetch_assoc($query)){
           ?>
-            <li><a href="?mod=detail&id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a><span><?php echo $r['status'] ?></span></li>
+            <li><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a><span><?php echo $r['status'] ?></span></li>
           <?php
             }
           ?>
@@ -25,7 +25,7 @@
             $query = mysqli_query($link, $sql);
             while($r=mysqli_fetch_assoc($query)){
           ?>
-            <li><a href="?mod=detail&id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a><span><?php echo $r['status'] ?></span></li>
+            <li><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a><span><?php echo $r['status'] ?></span></li>
           <?php
             }
           ?>
@@ -66,9 +66,9 @@
             while($r=mysqli_fetch_assoc($query)){
           ?>
             <li data-liked="852" data-views="49,875">
-              <div class="inner"><a href="?mod=detail&id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="images/1-201809120.jpg" alt="Nhật Ký Trả Thù 2"></a>
+              <div class="inner"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="<?php echo $r['image'] ?>" alt="Nhật Ký Trả Thù 2"></a>
                 <div class="info">
-                  <div class="name"><a href="?mod=detail&id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>
+                  <div class="name"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>
                   <div class="name2"><?php echo $r['name2'] ?></div>
                 </div>
                 <div class="status"><?php echo $r['status'] ?></div>
@@ -87,9 +87,9 @@
             while($r=mysqli_fetch_assoc($query)){
           ?>
             <li data-liked="3,987" data-views="94,650">
-            <div class="inner"><a href="?mod=detail&id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="images/1-201809120.jpg" alt=""></a>
+            <div class="inner"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="<?php echo $r['image'] ?>" alt=""></a>
               <div class="info">
-                <div class="name"><a href="?mod=detail&id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>
+                <div class="name"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>
                 <div class="name2"><?php echo $r['name2'] ?></div>
               </div>
               <div class="status"><?php echo $r['status'] ?></div>
@@ -108,9 +108,9 @@
             while($r=mysqli_fetch_assoc($query)){
           ?>
             <li data-liked="3,987" data-views="94,650">
-            <div class="inner"><a href="?mod=detail&id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="images/1-201809120.jpg" alt=""></a>
+            <div class="inner"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="<?php echo $r['image'] ?>" alt=""></a>
               <div class="info">
-                <div class="name"><a href="?mod=detail&id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>
+                <div class="name"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>
                 <div class="name2"><?php echo $r['name2'] ?></div>
               </div>
               <div class="status"><?php echo $r['status'] ?></div>
@@ -162,20 +162,28 @@
     <div class="blocktitle">
       <div class="icon movie1"></div>
       <h3 class="title"><a title="PHIM HÀNH ĐỘNG" href="javascript:void();">PHIM HÀNH ĐỘNG</a></h3>
-      <div class="more"><a href="javascript:void();">Xem thêm</a> »</div>
+      <div class="more"><a href="?mod=list&type=category&id=9">Xem thêm</a> »</div>
     </div>
     <div class="blockbody" id="list-movie-update">
       <div class="tab">
         <ul class="list-film tab ">
+          <?php
+            $sql = 'select * from `film` where `category_id` = 9 order by `id` DESC limit 4';
+            $query = mysqli_query($link, $sql);
+            while($r=mysqli_fetch_assoc($query)){
+          ?>
           <li data-liked="238" data-views="33,450">
-            <div class="inner"><a href="javascript:void();" title="Máy Bay Mất Tích (Phần 1)"><img src="images/1-201809120.jpg" alt=""></a>
+            <div class="inner"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="<?php echo $r['image'] ?>" alt=""></a>
               <div class="info">
-                <div class="name"><a href="javascript:void();" title="Máy Bay Mất Tích (Phần 1)">Máy Bay Mất Tích (Phần 1)</a></div>
-                <div class="name2">Manifest (Season 1)</div>
+                <div class="name"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>
+                <div class="name2"><?php echo $r['name2'] ?></div>
               </div>
-              <div class="status">HD Vietsub</div>
+              <div class="status"><?php echo $r['status'] ?></div>
             </div>
           </li>
+          <?php
+            }
+          ?>
         </ul>
       </div>
     </div>
@@ -183,22 +191,29 @@
   <div class="block">
     <div class="blocktitle">
       <div class="icon movie1"></div>
-      <h3 class="title"><a title="PHIM BỘ MỚI" href="javascript:void();">PHIM BỘ MỚI</a></h3>
-      <div class="more"><a href="javascript:void();">Xem thêm</a> »</div>
+      <h3 class="title"><a title="PHIM BỘ MỚI" href="javascript:void();">PHIM THUYẾT MINH</a></h3>
+      <div class="more"><a href="?mod=list&type=category&id=1">Xem thêm</a> »</div>
     </div>
     <div class="blockbody" id="list-movie-update">
       <div class="tab">
         <ul class="list-film tab">
-          <li data-liked="2,993" data-views="38,625">
-            <div class="inner"><a href="javascript:void();" title="Yêu Thì Ghét Thôi"><img src="images/1-201809120.jpg" alt=""></a>
+          <?php
+            $sql = 'select * from `film` where `category_id` = 1 order by `id` DESC limit 4';
+            $query = mysqli_query($link, $sql);
+            while($r=mysqli_fetch_assoc($query)){
+          ?>
+          <li data-liked="238" data-views="33,450">
+            <div class="inner"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="<?php echo $r['image'] ?>" alt=""></a>
               <div class="info">
-                <div class="name"><a href="javascript:void();" title="Yêu Thì Ghét Thôi">Yêu Thì Ghét Thôi</a></div>
-                <div class="name2">VTV3</div>
+                <div class="name"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>
+                <div class="name2"><?php echo $r['name2'] ?></div>
               </div>
-              <div class="status">HD Vietsub</div>
-
+              <div class="status"><?php echo $r['status'] ?></div>
             </div>
           </li>
+          <?php
+            }
+          ?>
         </ul>
       </div>
     </div>
