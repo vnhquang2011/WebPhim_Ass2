@@ -313,6 +313,14 @@
       }
     }
 
+    .notifyerror{
+      color:red;
+      font-size: 90%;
+      font-style: italic;
+      font-weight: normal;
+      margin-bottom: 0px;
+    }
+
   </style>
 </head>
   <body style="position: relative;">
