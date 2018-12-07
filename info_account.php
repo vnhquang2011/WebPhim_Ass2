@@ -122,7 +122,7 @@
             </div>
 
             <div class="form-group">
-              <label class="col-lg-3 control-label">Ngày sinh</label>
+                <label class="col-lg-3 control-label">Ngày sinh</label>
               <div class="col-lg-2">
                 <select class="form-control" name="update[birthday][day]" id="update-birthday-day">
                   <option value="">Ngày</option>
