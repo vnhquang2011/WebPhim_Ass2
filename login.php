@@ -12,27 +12,39 @@
 		$username = addslashes($username);
 		$password = strip_tags($password);
 		$password = addslashes($password);
-		if ($username == "" || $password =="") {
-			echo "username và password bạn không được để trống!";
+		if ($username == "" || $password =="") {?><script>
+			alert("username và password bạn không được để trống!")
+            </script>
+            <?php
         }
         else{
 			$sql = "SELECT * FROM user WHERE username = '$username'";
             $result = mysqli_query($link,$sql);
-            if(!$result || (mysqli_num_rows($result) < 1)){
-                echo "Username không đúng";
+            if(!$result || (mysqli_num_rows($result) < 1)){?>
+                <script>
+                    alert("Username không đúng");
+                </script> 
+            <?php
             }
             $dbarray = mysqli_fetch_array($result); 
             if(password_verify($password,$dbarray["password"])){
                 $_SESSION['username'] = $username;
                 $_SESSION['password'] = $password;
-                echo "Success!";
                 // phân quyền
                 if($dbarray['usertype'] == 99){
                     header('Location:admin/index.php');
                 }
                 else{
                     //member
-                    header('Location:index.php');
+                    //header('Location:index.php');
+                    ?>
+                    <script>
+                        document.getElementById("log").onclick= function logout() {
+                            //alert("hello");
+                            document.getElementById("log").text ="Đăng xuất";
+                        }
+                    </script>
+                    <?php
                 }
             }
             else{

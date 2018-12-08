@@ -6,9 +6,9 @@
     </div>
     <div id="sign">
 <!-- Van modified ↓↓ -->
-      <div class="login"><a rel="nofollow" href="javascript:void();" id="log">Đăng nhập</a>
+      <div class="login"><a rel="nofollow" href="javascript:void();" id="log" onclick="login()">Đăng nhập</a>
         <div class="login-form" id="login-form" style="display: none;">
-        <form method="post" action="login.php">
+        <form method="post" action="">
           <div>
             <input type="text" placeholder="Tên đăng nhập" class="input username" name="username">
           </div>
@@ -29,15 +29,21 @@
   </div>
 </div> 
 <script type="text/javascript">
-  var x = document.getElementById("login-form");
-  $('#log').on('click',function(){
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-  });
+  function login() {
+    var x = document.getElementById("login-form");
+      if (x.style.display === "none") {
+          x.style.display = "block";
+      } else {
+          x.style.display = "none";
+      }      
+  }
+  // document.getElementById("log").onclick.name="logout";
+  //document.getElementById("log").style.visibility = 'hidden';
+  // } -->
 </script>
+<?php
+include("login.php");
+?>
 <!-- Van modified ↑↑ -->
 <div id="nav">
   <ul class="container menu">

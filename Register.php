@@ -20,8 +20,8 @@
             echo "Tài khoản $username đã tồn tại";
         }
         else{
-            $sql = "INSERT INTO user(username,password,email,birthday,sex,usertype)
-                        VALUES ('$username','$hash','$email','$birthday','$gender',20)";
+            $sql = "INSERT INTO user(username,fullname,password,email,birthday,sex,usertype)
+                        VALUES ('$username', '$fullName','$hash','$email','$birthday','$gender',20)";
             mysqli_query($link,$sql);
             echo "Signup successful";
             header('Location:Index.php');
@@ -41,8 +41,11 @@
   <script src="js/owl.carousel.js" type="text/javascript"></script>
   <script src="js/jwplayer.js"></script>
 
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
   <link href="css/style_info_account.min.css" type="text/css" rel="stylesheet"> 
-  <link href="css/style-info_account.css" type="text/css" rel="stylesheet"> 
+  <link href="css/style.min.css" type="text/css" rel="stylesheet"> 
+  <!-- <link href="css/style-info_account.css" type="text/css" rel="stylesheet">  -->
+  
 
 </head>
   <body style="position: relative;">
