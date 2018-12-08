@@ -794,7 +794,7 @@ img.captcha-image {
 }
 
 #info {
-  background: url(../images/bgfooter2.png) repeat-x #000;
+  background: url(../images/bgfooter.png) repeat-x #000;
   float: right;
   margin-top: 1px;
   padding: 20px;
@@ -3037,3 +3037,5 @@ span.page_nav {
     -moz-transform: rotate(360deg)
   }
 }
+
+
