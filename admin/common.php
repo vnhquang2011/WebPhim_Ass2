@@ -23,7 +23,7 @@
 					<i class="fa fa-user-plus"></i> Add user</a>
 			</li>
 			<li>
-				<a href="deleteUser.php">
+				<a href="edit_delete.php">
 					<i class="fa fa-edit"></i> Delete and Edit User</a>
 			</li>
 		</ul>
