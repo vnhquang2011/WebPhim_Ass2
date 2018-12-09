@@ -6,9 +6,10 @@
     </div>
     <div id="sign">
 <!-- Van modified ↓↓ -->
-      <div class="login"><a rel="nofollow" href="javascript:void();" id="log" onclick="login()">Đăng nhập</a>
-        <div class="login-form" id="login-form" style="display: none;">
-        <form method="post" action="">
+<?php if(empty($_SESSION["username"])){?>
+  <div class="login"><a rel="nofollow" id="log">Đăng nhập</a>
+      <div class="login-form" id="login-form" style="display: none;">
+        <form method="post" action="login.php">
           <div>
             <input type="text" placeholder="Tên đăng nhập" class="input username" name="username">
           </div>
@@ -22,28 +23,63 @@
           <button type="submit" class="submit" name="btn_login">Đăng nhập</button>
           </div>
         </form>
-        </div>
       </div>
-      <div class="links"><a rel="nofollow" href="register.php">Đăng ký thành viên</a></div>
-    </div>
   </div>
+  <div class="links"><a rel="nofollow" href="register.php">Đăng ký thành viên</a></div>
+
+<?php } else {?>
+<!-- <div class="login"><a rel="nofollow" href="" name="log_out">Đăng xuất</a></div> -->
+  <form method="post" action="">
+      <button id="logout" name="log_out">Đăng xuất</button>
+      <a rel="nofollow" href="info_account.php">Thay đổi thông tin</a></div>
+      <span type="text" style="margin-top:10px">&nbsp&nbsp Xin chào <?php echo $_SESSION["username"]?>
+  </form>
+<?php } ?>
+<style> 
+  #logout{
+    background-position: 0 -41px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    height: 39px;
+    line-height: 30px;
+    text-align: center;
+    width: 97px;
+    /* background-image: url(../images/sprite.png?6); */
+    background: black;
+    color: #fff;
+    margin-right: 10px;
+}
+</style>
+
 </div>
-<script type="text/javascript">
-  function login() {
-    var x = document.getElementById("login-form");
-      if (x.style.display === "none") {
-          x.style.display = "block";
-      } else {
-          x.style.display = "none";
-      }      
-  }
-  // document.getElementById("log").onclick.name="logout";
-  //document.getElementById("log").style.visibility = 'hidden';
-  // } -->
-</script>
-<?php
-include("login.php");
-?>
+</div>
+</div>
+    <script type="text/javascript">
+      var x = document.getElementById("login-form");
+      $('#log').on('click', function(){
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+      });
+    </script>
+
+    <?php
+        if(isset($_POST["log_out"])){
+            ?>
+            <!-- <script>
+            alert("ádfghjh");
+            </script> -->
+            <?php
+            unset($_SESSION['username']);
+            session_unset(); 
+            session_destroy();
+            header('Location:index.php');
+        }
+    ?>
 <!-- Van modified ↑↑ -->
 <div id="nav">
   <ul class="container menu">

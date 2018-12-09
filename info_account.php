@@ -1,45 +1,65 @@
+<?php
+    session_start();
+?>
 <?php 
   require_once("libs/db.php");
-  $_SESSION['username']="Van";
-  $username = $_SESSION['username'];
-  $query="SELECT * FROM user WHERE username= '$username'";
+  if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+    $query="SELECT * FROM user WHERE username= '$username'";
 
-  $result=mysqli_query($link,$query);
-  
-
-  if(mysqli_num_rows($result) < 1){
-    echo "Username không tồn tại";
-  }
-  
-  $info = mysqli_fetch_array($result);
-
-  $name  = $info['username'];
-  $birthday=$info['birthday'];
-  $sex = $info['sex'];
-  $id=$info['ID'];
-
-
-  if(isset($_POST["button_update"])){
-    $username = $_POST["username"];
-    $password = $_POST["password1"];
+    $result=mysqli_query($link,$query);
     
-    $hash = password_hash($password, PASSWORD_BCRYPT);
-    $email = $_POST["email"];
-    $fullName = $_POST["fullname"];
-    $birthday = $_POST["birthday"];
-    $gender = $_POST["gender"];
- 
-    $sql = "UPDATE user SET 
-              username = '$username',
-              password = '$hash',
-              email = '$email',
-              birthday = '$birthday',
-              sex = '$gender'
-            WHERE ID = $id;";  
-    mysqli_query($link,$sql);                                          
+
+    if(mysqli_num_rows($result) < 1){
+      echo "Username không tồn tại";
+    }
+    
+    $info = mysqli_fetch_array($result);
+    
+    $name  = $info['username'];
+    $birthday=$info['birthday'];
+    $sex = $info['sex'];
+    $id =$info['ID'];
+    $fullName = $info['fullname'];
+    $email = $info['email'];
+    $old_password_db = $info['password'];
+
+    if(isset($_POST["button_update"])){
+      $username = $_POST["username"];
+      $old_pass = $_POST["password"];
+      $password = $_POST["password1"];
+
+      if(password_verify($old_pass,$old_password_db)){
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+        $email = $_POST["email"];
+        $fullName = $_POST["fullname"];
+        $birthday = $_POST["birthday"];
+        $gender = $_POST["gender"];
+    
+        $sql = "UPDATE user SET 
+                  username = '$username',
+                  password = '$hash',
+                  email = '$email',
+                  birthday = '$birthday',
+                  sex = '$gender',
+                  fullname = '$fullName'
+                WHERE ID = $id;";  
+        mysqli_query($link,$sql) or 'die';   
+        
+        header('Location:index.php');                                      
+      }
+      else {
+        ?>
+        <script>
+          alert("Nhập sai password cũ");
+        </script>
+        <?php
+      }
+
+      
+    }
   }
 ?>
- 
 <!DOCTYPE html>
 <!-- saved from url=(0018)javascript:void(); -->
 <html lang="vi" itemscope="itemscope" itemtype="http://schema.org/WebPage">
@@ -340,7 +360,7 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Tài khoản</label>
             <div class="col-lg-7">
-              <input type="text" class="form-control" name="username" id="update-username" value="<?php echo htmlentities($name); ?>">
+              <input type="text" class="form-control" name="username" id="update-username" value="<?php if(isset($username)) echo $username ?>">
               <label class="notifyerror" style="visibility: hidden; height: 0px" id="usernameerror">Tên tài khoản chỉ bao gồm ký tự a-z, A-Z và số</label>
             </div>
           </div>
@@ -373,14 +393,14 @@
             <div class="form-group">
               <label class="col-lg-3 control-label">Họ tên</label>
               <div class="col-lg-7">
-                <input type="text" class="form-control" name="fullname" id="update-fullname" value="">
+                <input type="text" class="form-control" name="fullname" id="update-fullname" value="<?php if(isset($fullName)) echo $fullName ?>">
                 <label class="notifyerror" style="visibility: hidden; height: 0px" id="fullnameerror">Tên chỉ bao gồm các chữ cái</label>  
               </div>
             </div>
             
             <div class="form-group">
                 <label class="col-lg-3 control-label">Email</label>
-                <div class="col-lg-7"><input type="email" class="form-control" name="email" id="update-email">
+                <div class="col-lg-7"><input type="email" class="form-control" name="email" id="update-email" value="<?php if(isset($email)) echo $email ?>">
                 <label class="notifyerror" style="visibility: hidden; height: 0px" id="emailerror">Email không đúng định dạng name@domain</label>  
                 </div>
             </div>
@@ -399,10 +419,10 @@
               <div class="col-lg-7">
                 <label class="checkbox-inline">
                   <input type="radio" name="gender" id="update-gender-male" value="male" 
-                  <?php echo ($sex=='male')?'checked':'' ?>> Nam</label>
+                  <?php if(isset($sex)) echo ($sex=='male')?'checked':'' ?>> Nam</label>
                   <label class="checkbox-inline">
                   <input type="radio" name="gender" id="update-gender-female" value="female"
-                  <?php echo ($sex=='female')?'checked':'' ?>> Nữ
+                  <?php if(isset($sex)) echo ($sex=='female')?'checked':'' ?>> Nữ
                   </label>
               </div>
             </div>

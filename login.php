@@ -27,6 +27,7 @@
             <?php
             }
             $dbarray = mysqli_fetch_array($result); 
+
             if(password_verify($password,$dbarray["password"])){
                 $_SESSION['username'] = $username;
                 $_SESSION['password'] = $password;
@@ -36,22 +37,14 @@
                 }
                 else{
                     //member
-                    //header('Location:index.php');
-                    ?>
-                    <script>
-                        document.getElementById("log").onclick= function logout() {
-                            //alert("hello");
-                            document.getElementById("log").text ="Đăng xuất";
-                        }
-                    </script>
-                    <?php
+                    header('Location:index.php');                    
                 }
             }
-            else{
-                echo " Fail";
-                // echo "<script>
-                //     alert('Password failure');
-                // </script>";
+            else{?>
+                <script>
+                    alert('Password failure');
+                </script>
+                <?php
             }
 		}
     }
