@@ -1,6 +1,5 @@
 <?php
     require('libs/db.php');
-    $nameQuery = isset($_GET["usrname"]) ?  $_GET["usrname"]: ' ';
 ?>
 
 <!DOCTYPE html>
@@ -43,8 +42,8 @@
                     <!-- get from database -->
                     <?php
                         if(isset($_POST["button_search"])){
-                            $name=isset($_POST["user"]) ? $_POST["user"] : $nameQuery;
-
+                            $name = isset($_POST["user"]) ? $_POST["user"] : '';
+                            
                             $sql = "SELECT * FROM user WHERE username LIKE '%{$name}%'";
                             $result = mysqli_query($link, $sql);
                             if (mysqli_num_rows($result) > 0) { ?>
@@ -60,7 +59,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                <?php while($row = mysqli_fetch_assoc($result)) {?>
+                                <?php while($row = mysqli_fetch_assoc($result)) {
+                                    if ($row["usertype"] == 20){
+                                    ?>
                                     <tr>
                                         <th> <?php echo $row["ID"] ?> </th>
                                         <th> <?php echo $row["username"] ?> </th>
@@ -71,7 +72,9 @@
                                             <button type="button" class="btn btn-danger" name="delete" onclick="del(this)">Delete</button>
                                         </td>
                                     </tr>
-                                <?php }
+                                <?php 
+                                    } 
+                                }
                             } else {
                                 echo "No user like ".$name;
                             }

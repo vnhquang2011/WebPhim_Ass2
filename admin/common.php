@@ -19,6 +19,10 @@
 					<i class="fa fa-tasks"></i> Post film</a>
 			</li>
 			<li>
+				<a href="manageFilm.php">
+					<i class="fa fa-edit"></i> Manage film</a>
+			</li>
+			<li>
 				<a href="addUser.php">
 					<i class="fa fa-user-plus"></i> Add user</a>
 			</li>
