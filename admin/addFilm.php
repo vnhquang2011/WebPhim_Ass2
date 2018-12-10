@@ -66,14 +66,14 @@
                     <h2 class="title">Thêm Phim</h2>
                 </div>
                 <form method="post" id="form-insert-film" name="form-insert-film" class="form-horizontal" action="" role="form" >
-                    <div>
+                    <!-- <div>
                         <label for="ID-film" class="col-md-2">
                             ID phim
                         </label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" id="ID-film" value="<?php echo "auto increase";?>">
                         </div>
-                    </div>
+                    </div> -->
                     <div>
                         <label for="film-name" class="col-md-2">
                             Tên phim
@@ -293,7 +293,11 @@
                 alert("Insert film sucessfully!");
             </script>
         <?php
-        }
+        } else { ?>
+            <script>
+                alert("Add film fail!"); -->
+            </script>
+        <?php }
     }
     ?>
 

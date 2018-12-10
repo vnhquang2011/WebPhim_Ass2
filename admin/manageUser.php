@@ -93,14 +93,14 @@
                 var tr = params.parentElement.parentElement;
                 var td0= tr.cells.item(0).innerHTML;
                 td0 = td0.replace(' ','' ); //id của user có space ???
-                location.href= "edit.php?id=" + td0;
+                location.href= "editUser.php?id=" + td0;
         };
         function del(params) {
             if(confirm("Bạn có chắc muốn xóa user này?")){
                 var tr = params.parentElement.parentElement;
                 var td0= tr.cells.item(0).innerHTML;
                 td0 = td0.replace(' ','' ); //id của user có space ???
-                location.href= "delete.php?id=" + td0;
+                location.href= "deleteUser.php?id=" + td0;
             }
         };
     </script>

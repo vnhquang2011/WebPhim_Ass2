@@ -55,7 +55,12 @@
                 <h2>Chỉnh sửa User</h2>
             </div>
             <form method="post" id="form-update" name="form-update" class="form-horizontal" action="" role="form" style="padding: 20px;">
-
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">ID</label>
+                        <div class="col-lg-7">
+                        <input type="text" class="form-control" name="id" id="id" value="<?php echo $row["ID"];?>" readonly>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Tài khoản</label>
                         <div class="col-lg-7">

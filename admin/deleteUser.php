@@ -9,7 +9,7 @@
     if (mysqli_query($link, $sql)) {?>
         <script>
             alert("Record deleted successfully");
-            location.href = "edit_delete.php";
+            location.href = "manageUser.php";
             // alert("hshshsh");
         </script>
 

@@ -48,7 +48,7 @@
         <?php
             include("common.php");
         ?>
-        <div id="add-user">
+        <div id="edit-film">
             <div class="row text-center">
                 <h2>Chỉnh sửa film</h2>
             </div>
@@ -256,40 +256,57 @@
     <?php
         require_once("libs/db.php");
         if(isset($_POST["button_update"])){
-            $username = $_POST["username"];
-            $password = $_POST["password"];
-            // echo $username;
-                $hash = password_hash($password, PASSWORD_BCRYPT);
-            $email = $_POST["email"];
-            $fullName = $_POST["fullname"];
-            $birthday = $_POST["birthday"];
-            $gender = $_POST["gender"];
+            $name = $_POST["film-name"];
+            $name2 = $_POST["film-name2"];
+            $status = $_POST["status"];
+            $director = $_POST["director"];
+            $actor = $_POST["actor"];
+            $category = $_POST["category"];
+            $type_movie = $_POST["type_movie"];
+            $nation = $_POST["nation"];
+            $year = $_POST["year"];
+            $link_image = $_POST["image"];
+            $link_film = '';
+            $description = $_POST["decription"];
+            $duration = $_POST["duration"];
+            $author = $_POST["author"];
 
             //thực hiện việc lưu trữ dữ liệu vào db 
-            // edit != insert
-            $sql = "SELECT * FROM user WHERE ID = '$userID'";
+            $sql = "SELECT * FROM film WHERE ID = '$filmID'";
             $check = mysqli_query($link,$sql);
-            print_r(mysqli_num_rows($check));
             if(mysqli_num_rows($check) <= 0){ ?>
                 <script>
-                    alert('Tài khoản với ID <?php echo $userID;?> chưa có');
+                    alert('Phim với ID <?php echo $userID;?> không tồn tại');
                 </script>";
                 <?php
             }
             else{
-                $sql = "UPDATE user SET username='$username', password='$hash', fullname='$fullName', email='$email', birthday='$birthday', sex='$gender' WHERE id = $userID";
+                $sql = "UPDATE film SET 
+                    name='$name',
+                    name2='$name2', 
+                    status='$status', 
+                    director='$director', 
+                    actor='$actor', 
+                    category_id='$category',
+                    type_movie='$type_movie',
+                    nation_id='$nation',
+                    image='$link_image',
+                    description='$description',
+                    duration='$duration',
+                    author='$author'
+                WHERE id = $filmID";
                 $result = mysqli_query($link,$sql); 
 
                 if ($result){?>
                     <script>
-                        alert("Edit user successfully!");
+                        alert("Edit film successfully!");
                         location.href= window.location.href; //reload page
                     </script>
                 <?php 
                 } else{ 
                 ?>
                     <script>
-                        alert("Edit user fail!"); -->
+                        alert("Edit film fail!"); -->
                     </script>
                 <?php
                 }
@@ -299,6 +316,7 @@
     <?php }
         mysqli_close($link);
     ?>
+
 
 </body>
 </html>

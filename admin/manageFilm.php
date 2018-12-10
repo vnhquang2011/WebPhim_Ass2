@@ -100,14 +100,14 @@
                 var tr = params.parentElement.parentElement;
                 var td0= tr.cells.item(0).innerHTML;
                 td0 = td0.replace(' ','' ); //id của user có space ???
-                location.href= "editfilm.php?id=" + td0;
+                location.href= "editFilm.php?id=" + td0;
         };
         function del(params) {
             if(confirm("Bạn có chắc muốn xóa user này?")){
                 var tr = params.parentElement.parentElement;
                 var td0= tr.cells.item(0).innerHTML;
                 td0 = td0.replace(' ','' ); //id của user có space ???
-                location.href= "deletefilm.php?id=" + td0;
+                location.href= "deleteFilm.php?id=" + td0;
             }
         };
     </script>

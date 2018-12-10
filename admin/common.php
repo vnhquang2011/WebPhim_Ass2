@@ -15,20 +15,20 @@
 					<i class="fa fa-bullseye"></i> Dashboard</a>
 			</li>
 			<li>
-				<a href="post.php">
-					<i class="fa fa-tasks"></i> Post film</a>
+				<a href="addFilm.php">
+				<i class="fa fa-plus"></i></i> Add film</a>
 			</li>
 			<li>
 				<a href="manageFilm.php">
-					<i class="fa fa-edit"></i> Manage film</a>
+				<i class="fa fa-tasks"></i> Manage film</a>
 			</li>
 			<li>
 				<a href="addUser.php">
 					<i class="fa fa-user-plus"></i> Add user</a>
 			</li>
 			<li>
-				<a href="edit_delete.php">
-					<i class="fa fa-edit"></i> Delete and Edit User</a>
+				<a href="manageUser.php">
+					<i class="fa fa-edit"></i> Manage User</a>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right navbar-user">
