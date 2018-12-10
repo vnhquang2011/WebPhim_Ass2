@@ -103,7 +103,7 @@
                 location.href= "editFilm.php?id=" + td0;
         };
         function del(params) {
-            if(confirm("Bạn có chắc muốn xóa user này?")){
+            if(confirm("Bạn có chắc muốn xóa film này?")){
                 var tr = params.parentElement.parentElement;
                 var td0= tr.cells.item(0).innerHTML;
                 td0 = td0.replace(' ','' ); //id của user có space ???

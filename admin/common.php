@@ -1,82 +1,101 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="index.php">Admin Panel</a>
-	</div>
-	<div class="collapse navbar-collapse navbar-ex1-collapse">
-		<ul id="active" class="nav navbar-nav side-nav">
-			<li>
-				<a href="index.php">
-					<i class="fa fa-bullseye"></i> Dashboard</a>
-			</li>
-			<li>
-				<a href="addFilm.php">
-				<i class="fa fa-plus"></i></i> Add film</a>
-			</li>
-			<li>
-				<a href="manageFilm.php">
-				<i class="fa fa-tasks"></i> Manage film</a>
-			</li>
-			<li>
-				<a href="addUser.php">
-					<i class="fa fa-user-plus"></i> Add user</a>
-			</li>
-			<li>
-				<a href="manageUser.php">
-					<i class="fa fa-edit"></i> Manage User</a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right navbar-user">
-			<!-- <li class="dropdown messages-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">2</span> <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li class="dropdown-header">2 New Messages</li>
-                <li class="message-preview">
-                    <a href="#">
-                        <span class="avatar"><i class="fa fa-bell"></i></span>
-                        <span class="message">Security alert</span>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li class="message-preview">
-                    <a href="#">
-                        <span class="avatar"><i class="fa fa-bell"></i></span>
-                        <span class="message">Security alert</span>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li><a href="#">Go to Inbox <span class="badge">2</span></a></li>
-            </ul>
-        </li> -->
-			<li>
-				<form class="navbar-search">
-					<input type="text" placeholder="Search" class="form-control">
-				</form>
-			</li>
-			<li class="divider-vertical"></li>
-			<li class="dropdown user-dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<i class="fa fa-user"></i> Steve Miller
-					<b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a href="#">
-							<i class="fa fa-user"></i> Profile</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-power-off"></i> Log Out</a>
-					</li>
+<?php
+	session_start();
+	if(isset($_SESSION['username'])){
+		$name = $_SESSION['username'];
+		// get ID admin
+		require('libs/db.php');
+		$sql = "SELECT * from user WHERE username = '$name'";
+		$result = mysqli_query($link, $sql);
+		if(mysqli_num_rows($result) > 0){
+			$row = mysqli_fetch_assoc($result);
+		}
+		
+?>
 
-				</ul>
-			</li>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.php">Admin Panel</a>
+		</div>
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul id="active" class="nav navbar-nav side-nav">
+				<li>
+					<a href="index.php">
+						<i class="fa fa-bullseye"></i> Dashboard</a>
+				</li>
+				<li>
+					<a href="addFilm.php">
+					<i class="fa fa-plus"></i></i> Add film</a>
+				</li>
+				<li>
+					<a href="manageFilm.php">
+					<i class="fa fa-tasks"></i> Manage film</a>
+				</li>
+				<li>
+					<a href="addUser.php">
+						<i class="fa fa-user-plus"></i> Add user</a>
+				</li>
+				<li>
+					<a href="manageUser.php">
+						<i class="fa fa-edit"></i> Manage User</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right navbar-user">
+				<li>
+					<form class="navbar-search">
+						<input type="text" placeholder="Search" class="form-control">
+					</form>
+				</li>
+				<li class="divider-vertical"></li>
+				<li class="dropdown user-dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-user"></i> <?php echo $_SESSION['username'];?>
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="<?php echo "editUser.php?id=". $row["ID"]?>"> <i class="fa fa-user"></i> Profile</a>
+						</li>
+						<li>
+							<form method="post" action="">
+								<a> <button id="logout" name="log_out" style=""> 
+									<i class="fa fa-power-off"></i>Đăng xuất</button> 
+								</a>
+							</form>
+						</li>
 
-		</ul>
-	</div>
-</nav>
+					</ul>
+				</li>
+
+			</ul>
+
+			<style>
+				#logout{
+					background: black; 
+					width: 100%; 
+					border: none; 
+					color: white; 
+					text-align: left; 
+					padding-left: 20px;
+				}
+			</style>
+			<?php
+				if(isset($_POST["log_out"])){
+					unset($_SESSION['username']);
+					session_unset(); 
+					session_destroy();
+					header('Location:../index.php');
+				}
+			?>
+		</div>
+	</nav>
+<?php
+	} else {
+		header('Location:../index.php');
+	}
+?>

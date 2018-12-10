@@ -8,14 +8,14 @@
 
     if (mysqli_query($link, $sql)) {?>
         <script>
-            alert("Record deleted successfully");
+            alert("Xóa User thành công");
             location.href = "manageUser.php";
             // alert("hshshsh");
         </script>
 
     <?php        
     } else {
-        echo "Error deleting record: " . mysqli_error($conn);
+        echo "Lỗi xóa user " . mysqli_error($conn);
     }
     mysqli_close($link);
     
