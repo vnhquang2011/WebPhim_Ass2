@@ -4,10 +4,10 @@
 		$name = $_SESSION['username'];
 		// get ID admin
 		require('libs/db.php');
-		$sql = "SELECT * from user WHERE username = '$name'";
-		$result = mysqli_query($link, $sql);
-		if(mysqli_num_rows($result) > 0){
-			$row = mysqli_fetch_assoc($result);
+		$sqlAd = "SELECT * from user WHERE username = '$name'";
+		$resultAd = mysqli_query($link, $sqlAd);
+		if(mysqli_num_rows($resultAd) > 0){
+			$rowAd = mysqli_fetch_assoc($resultAd);
 		}
 		
 ?>
@@ -59,7 +59,7 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<?php echo "editUser.php?id=". $row["ID"]?>"> <i class="fa fa-user"></i> Profile</a>
+							<a href="<?php echo "editUser.php?id=". $rowAd["ID"]?>"> <i class="fa fa-user"></i> Profile</a>
 						</li>
 						<li>
 							<form method="post" action="">
