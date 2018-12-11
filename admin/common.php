@@ -33,6 +33,10 @@
 					<i class="fa fa-plus"></i></i> Add film</a>
 				</li>
 				<li>
+					<a href="addEpisode.php">
+					<i class="fa fa-plus"></i></i> Add episode</a>
+				</li>
+				<li>
 					<a href="manageFilm.php">
 					<i class="fa fa-tasks"></i> Manage film</a>
 				</li>
