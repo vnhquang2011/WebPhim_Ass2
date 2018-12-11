@@ -1,6 +1,6 @@
 <?php 
   require_once("libs/db.php");
-  $_SESSION['username']="Van";
+  session_start();
   $username = $_SESSION['username'];
   $query="SELECT * FROM user WHERE username= '$username'";
 
