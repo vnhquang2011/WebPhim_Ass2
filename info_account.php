@@ -13,9 +13,11 @@
   
   $info = mysqli_fetch_array($result);
 
-  $name  = $info['username'];
-  $birthday=$info['birthday'];
-  $sex = $info['sex'];
+  $received_name  = $info['username'];
+  $received_birthday=$info['birthday'];
+  $received_sex = $info['sex'];
+  $received_fullname = $info['fullname'];
+  $received_email = $info['email'];
   $id=$info['ID'];
 
 
@@ -340,7 +342,7 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Tài khoản</label>
             <div class="col-lg-7">
-              <input type="text" class="form-control" name="username" id="update-username" value="<?php echo htmlentities($name); ?>">
+              <input type="text" class="form-control" name="username" id="update-username" value="<?php echo htmlentities($received_name); ?>">
               <label class="notifyerror" style="visibility: hidden; height: 0px" id="usernameerror">Tên tài khoản chỉ bao gồm ký tự a-z, A-Z và số</label>
             </div>
           </div>
@@ -373,14 +375,14 @@
             <div class="form-group">
               <label class="col-lg-3 control-label">Họ tên</label>
               <div class="col-lg-7">
-                <input type="text" class="form-control" name="fullname" id="update-fullname" value="">
+                <input type="text" class="form-control" name="fullname" id="update-fullname" value="<?php echo htmlentities($received_fullname); ?>">
                 <label class="notifyerror" style="visibility: hidden; height: 0px" id="fullnameerror">Tên chỉ bao gồm các chữ cái</label>  
               </div>
             </div>
             
             <div class="form-group">
                 <label class="col-lg-3 control-label">Email</label>
-                <div class="col-lg-7"><input type="email" class="form-control" name="email" id="update-email">
+                <div class="col-lg-7"><input type="email" class="form-control" name="email" id="update-email" value="<?php echo htmlentities($received_email); ?>">
                 <label class="notifyerror" style="visibility: hidden; height: 0px" id="emailerror">Email không đúng định dạng name@domain</label>  
                 </div>
             </div>
@@ -399,10 +401,10 @@
               <div class="col-lg-7">
                 <label class="checkbox-inline">
                   <input type="radio" name="gender" id="update-gender-male" value="male" 
-                  <?php echo ($sex=='male')?'checked':'' ?>> Nam</label>
+                  <?php echo ($received_sex=='male')?'checked':'' ?>> Nam</label>
                   <label class="checkbox-inline">
                   <input type="radio" name="gender" id="update-gender-female" value="female"
-                  <?php echo ($sex=='female')?'checked':'' ?>> Nữ
+                  <?php echo ($received_sex=='female')?'checked':'' ?>> Nữ
                   </label>
               </div>
             </div>
