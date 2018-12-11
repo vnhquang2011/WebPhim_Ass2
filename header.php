@@ -1,8 +1,11 @@
 <div id="header">
   <div class="container">
-    <h1 id="logo"><a href="javascript:void();" title="Xem Phim">Xem phim</a></h1>
+    <h1 id="logo"><a href="?mod=home" title="Xem Phim">Xem phim</a></h1>
     <div id="search">
-      <form method="get" action="javascript:void();"><input type="text" autocomplete="off" name="keyword" placeholder="Tên phim hoặc diễn viên cần tìm..." class="keyword"><button type="submit" class="submit"></button></form>
+      <form method="post" action="?mod=search">
+        <input type="text" autocomplete="off" name="kw" placeholder="Tìm phim..." class="keyword">
+        <button type="submit" class="submit"></button>
+      </form>
     </div>
     <div id="sign">
 <!-- Van modified ↓↓ -->
@@ -35,7 +38,7 @@
       <span type="text" style="margin-top:10px">&nbsp&nbsp Xin chào <?php echo $_SESSION["username"]?>
   </form>
 <?php } ?>
-<style> 
+<style>
   #logout{
     background-position: 0 -41px;
     background-repeat: no-repeat;
@@ -75,7 +78,7 @@
             </script> -->
             <?php
             unset($_SESSION['username']);
-            session_unset(); 
+            session_unset();
             session_destroy();
             header('Location:index.php');
         }

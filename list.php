@@ -315,7 +315,7 @@
   <div class="block" id="page-list">
     <div class="blocktitle breadcrumbs">
       <div class="item">
-        <a href="#" title="Xem Phim Nhanh, Xem Phim Online chất lượng cao miễn phí">
+        <a href="?mod=home" title="Xem Phim Nhanh, Xem Phim Online chất lượng cao miễn phí">
           <span>Xem phim</span>
         </a>
       </div>
@@ -324,7 +324,13 @@
       </div>
     </div>
     <div class="filter">
+      <?php
+        if (isset($_GET['id'])) {
+      ?>
       <form method="post" action="?mod=list&type=<?php echo $_GET['type']?>&id=<?php echo $_GET['id'] ?>">
+      <?php }elseif(isset($_GET['year'])) { ?>
+        <form method="post" action="?mod=list&type=<?php echo $_GET['type']?>&year=<?php echo $_GET['year'] ?>">
+      <?php } ?>
         <div class="item"><span>Sắp xếp</span>
           <select class="input" name="filter_type">
             <option value="">-Mặc định-</option>

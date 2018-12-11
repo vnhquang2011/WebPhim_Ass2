@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 07, 2018 lúc 08:12 PM
+-- Thời gian đã tạo: Th12 11, 2018 lúc 03:52 AM
 -- Phiên bản máy phục vụ: 10.1.32-MariaDB
 -- Phiên bản PHP: 7.2.5
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `assfilm`
 --
-CREATE DATABASE `assfilm`;
-USE `assfilm`;
 
 -- --------------------------------------------------------
 
@@ -73,6 +71,15 @@ CREATE TABLE `episode` (
   `episode_name` varchar(20) CHARACTER SET utf8 NOT NULL,
   `content` varchar(100) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Đang đổ dữ liệu cho bảng `episode`
+--
+
+INSERT INTO `episode` (`id`, `film_id`, `episode`, `episode_name`, `content`) VALUES
+(1, 122, 1, 'Full', 'images/video/film122-1.mp4'),
+(2, 121, 1, '1', 'images/video/film121-1.mp4'),
+(3, 121, 2, '2', 'images/video/film121-2.mp4');
 
 -- --------------------------------------------------------
 
@@ -346,6 +353,27 @@ INSERT INTO `theater-movie` (`id`, `name`, `year`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `type-movie`
+--
+
+CREATE TABLE `type-movie` (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `handle` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `type-movie`
+--
+
+INSERT INTO `type-movie` (`id`, `name`, `handle`) VALUES
+(1, 'Phim lẻ', 'single-movie'),
+(2, 'Phim bộ', 'series-movie'),
+(3, 'Phim chiếu rạp', 'theater-movie');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `user`
 --
 
@@ -448,6 +476,12 @@ ALTER TABLE `theater-movie`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `type-movie`
+--
+ALTER TABLE `type-movie`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `user`
 --
 ALTER TABLE `user`
@@ -468,7 +502,7 @@ ALTER TABLE `usertype`
 -- AUTO_INCREMENT cho bảng `episode`
 --
 ALTER TABLE `episode`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `film`
@@ -505,6 +539,12 @@ ALTER TABLE `single-movie`
 --
 ALTER TABLE `theater-movie`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `type-movie`
+--
+ALTER TABLE `type-movie`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
